@@ -1,8 +1,6 @@
 # Itamae::Plugin::Recipe::Sensu
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/itamae/plugin/recipe/sensu`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+[Itamae](https://github.com/itamae-kitchen/itamae) plugin to install sensu.
 
 ## Installation
 
@@ -22,7 +20,39 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Recipe
+
+```
+# your recipe
+include_recipe 'sensu::package'
+
+include_recipe 'sensu::api_service'
+
+include_recipe 'sensu::client_service'
+
+include_recipe 'sensu::server_service'
+```
+
+### Node
+
+```
+sensu:
+  core:
+    rabbitmq:
+      host: localhost
+      vhost: /sensu
+      user: sensu
+      password: secret
+    redis:
+      host: localhost
+    api:
+      port: 4567
+  client:
+    name: client_host_name
+    address: client_ip_address
+    subscriptions:
+      - test
+```
 
 ## Development
 

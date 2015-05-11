@@ -1,0 +1,14 @@
+{
+  "rabbitmq": {
+    "host": "<%= @core[:rabbitmq][:host] %>",
+    "vhost": "<%= @core[:rabbitmq][:vhost] %>",
+    "user": "<%= @core[:rabbitmq][:user] %>",
+    "password": "<%= @core[:rabbitmq][:password] %>"
+  },
+  "redis": {
+    "host": "<%= @core[:redis][:host] %>"
+  },
+  "api": {
+    "port": <%= @core[:api][:port] %>
+  }
+}
