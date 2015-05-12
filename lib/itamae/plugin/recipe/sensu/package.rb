@@ -5,9 +5,6 @@
 require 'pathname'
 require Pathname.new(__FILE__).join('../../sensu.rb')
 
-include_recipe 'rabbitmq::package'
-include_recipe 'redis::package'
-
 case node[:platform]
 when 'debian', 'ubuntu'
   execute 'add sensu repository' do
