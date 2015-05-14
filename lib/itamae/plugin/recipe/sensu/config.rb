@@ -1,8 +1,5 @@
 # Add config files for sensu server/client/api
-
-node[:sensu][:core].reverse_merge!(
-
-)
+include_recipe 'sensu::base'
 
 template '/etc/sensu/config.json' do
   source Itamae::Plugin::Recipe::Sensu.template_path('config.json.erb')

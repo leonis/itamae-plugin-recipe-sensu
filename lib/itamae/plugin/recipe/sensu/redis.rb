@@ -1,4 +1,5 @@
 # Install Redis
+include_recipe 'sensu::base'
 
 node.reverse_merge!(
   redis: {
