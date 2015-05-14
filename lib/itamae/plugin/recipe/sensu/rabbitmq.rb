@@ -9,7 +9,13 @@ node.reverse_merge!(
     user: {
       name: rabbitmq_node[:user],
       password: rabbitmq_node[:password],
-      tag: 'monitoring'
+      tag: 'monitoring',
+      rights: {
+        vhost: rabbitmq_node[:vhost],
+        conf: '.*',
+        write: '.*',
+        read: '.*'
+      }
     },
     plugins: %w(rabbitmq_management rabbitmq_management_visualiser)
   }
