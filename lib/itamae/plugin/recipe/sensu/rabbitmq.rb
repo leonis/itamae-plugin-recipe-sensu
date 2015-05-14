@@ -5,6 +5,7 @@ rabbitmq_node = node[:sensu][:core][:rabbitmq]
 node.reverse_merge!(
   rabbitmq: {
     vhost: rabbitmq_node[:vhost],
+    port: rabbitmq_node[:port],
     user: {
       name: rabbitmq_node[:user],
       password: rabbitmq_node[:password],
@@ -16,3 +17,5 @@ node.reverse_merge!(
 
 include_recipe 'rabbitmq::package'
 include_recipe 'rabbitmq::plugins'
+include_recipe 'rabbitmq::config'
+include_recipe 'rabbitmq::enable'
