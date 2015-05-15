@@ -1,15 +1,42 @@
 sensu:
-  core:
-    rabbitmq:
-      host: localhost
-      port: 5672
-      vhost: /sensu
-      user: sensu
-      password: secret
-    redis:
-      host: localhost
-      port: 6379
-    api:
-      host: localhost
-      bind: 0.0.0.0
-      port: 4567
+  # user
+  user: sensu
+  group: sensu
+
+  # configs
+  admin_user: root
+  directory: /etc/sensu
+  log_directory: /var/log/sensu
+
+  # installation
+  version:
+  log_level: info
+  use_ssl: false
+  use_embedded_ruby: true
+  init_style: sysv
+  service_max_wait: 10
+  directory_mode: '0750'
+  log_directory_mode: '0750'
+
+  transport:
+    reconnect_on_error: true
+
+  # RabbitMQ
+  rabbitmq:
+    host: localhost
+    port: 5672
+    vhost: /sensu
+    user: sensu
+    password: password
+
+  # Redis
+  redis:
+    host: localhost
+    port: 6379
+    reconnect_on_error: true
+
+  # sensu-api
+  api:
+    host: localhost
+    port: 4567
+    bind: '0.0.0.0'
