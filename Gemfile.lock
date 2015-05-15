@@ -1,0 +1,62 @@
+GIT
+  remote: https://github.com/leonis/itamae-plugin-recipe-erlang.git
+  revision: b253ade835ddd625ea630cfbc6183d72048d14fc
+  specs:
+    itamae-plugin-recipe-erlang (0.1.0)
+      itamae (~> 1.2)
+
+GIT
+  remote: https://github.com/leonis/itamae-plugin-recipe-rabbitmq.git
+  revision: 79a2f07c839b3707e5e7bf3673c9e0470106d726
+  specs:
+    itamae-plugin-recipe-rabbitmq (0.1.0)
+      itamae (~> 1.2)
+      itamae-plugin-recipe-erlang
+
+GIT
+  remote: https://github.com/leonis/itamae-plugin-recipe-redis.git
+  revision: e5f415df514d8f8b11203b321c19084fd7499f67
+  specs:
+    itamae-plugin-recipe-redis (0.1.0)
+      itamae (~> 1.2)
+
+PATH
+  remote: .
+  specs:
+    itamae-plugin-recipe-sensu (0.1.0)
+      itamae (~> 1.2)
+      itamae-plugin-recipe-erlang
+      itamae-plugin-recipe-rabbitmq
+      itamae-plugin-recipe-redis
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ansi (1.5.0)
+    hashie (3.4.1)
+    itamae (1.2.16)
+      ansi
+      hashie
+      schash (~> 0.1.0)
+      specinfra (>= 2.31.0, < 3.0.0)
+      thor
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.9.2)
+    rake (10.4.2)
+    schash (0.1.1)
+    specinfra (2.32.0)
+      net-scp
+      net-ssh
+    thor (0.19.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler (~> 1.7)
+  itamae-plugin-recipe-erlang!
+  itamae-plugin-recipe-rabbitmq!
+  itamae-plugin-recipe-redis!
+  itamae-plugin-recipe-sensu!
+  rake (~> 10.0)
