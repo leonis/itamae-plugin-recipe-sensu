@@ -1,9 +1,9 @@
 # Install Redis
-include_recipe 'sensu::base'
+include_recipe 'sensu::default'
 
 node.reverse_merge!(
   redis: {
-    port: node[:sensu][:core][:redis][:port]
+    port: node.sensu.redis.port
   }
 )
 

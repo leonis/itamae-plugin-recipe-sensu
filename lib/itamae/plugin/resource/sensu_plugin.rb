@@ -3,8 +3,6 @@ require 'itamae'
 module Itamae
   module Resource
     class SensuPlugin < GemPackage
-      define_attribute :embedded_gem, default: true
-
       EMBEDDED_GEM = '/opt/sensu/embedded/bin/gem'.freeze
       PLUGIN_PREFIX = 'sensu-plugins-'.freeze
 
@@ -12,7 +10,9 @@ module Itamae
         super
 
         normalize_plugin_name
-        attributes.gem_binary = (attributes.embedded_gem ? EMBEDDED_GEM : 'gem')
+
+        # force to use embedded gem if node.sensu.use_embedded_ruby is true.
+        attributes.gem_binary = (node.sensu.use_embedded_ruby ? EMBEDDED_GEM : 'gem')
       end
 
       private

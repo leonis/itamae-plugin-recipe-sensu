@@ -6,17 +6,17 @@ sensu:
   # configs
   admin_user: root
   directory: /etc/sensu
+  directory_mode: '0750'
   log_directory: /var/log/sensu
+  log_directory_mode: '0750'
 
   # installation
   version:
-  log_level: info
   use_ssl: false
+
   use_embedded_ruby: true
-  init_style: sysv
+  log_level: info
   service_max_wait: 10
-  directory_mode: '0750'
-  log_directory_mode: '0750'
 
   transport:
     reconnect_on_error: true
