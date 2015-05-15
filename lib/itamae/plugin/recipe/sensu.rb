@@ -1,3 +1,6 @@
+require 'pathname'
+require Pathname.new(__FILE__).join('../../resource/sensu_plugin.rb').to_s
+
 module Itamae
   module Plugin
     module Recipe
