@@ -84,48 +84,48 @@ include_recipe 'sensu::api_service'
 
 ### Node
 
-```
-sensu:
-  core:
-    rabbitmq:
-      host: localhost
-      port: 5672
-      vhost: /sensu
-      user: sensu
-      password: secret
-    redis:
-      host: localhost
-      port: 6379
-    api:
-      host: localhost
-      port: 4567
-      bind: 0.0.0.0
-  client:
-    name: client_host_name
-    address: client_ip_address
-    subscriptions:
-      - test
-```
+See `attribuets/defaults.yml` about default values.
+
+#### Installation
 
 | name | description |
-|:-----------------------------|:-------------------------------|
-| sensu.core.rabbitmq.host     | host for rabbitmq |
-| sensu.core.rabbitmq.port     | port for rabbitmq |
-| sensu.core.rabbitmq.vhost    | vhost of rabbitmq |
-| sensu.core.rabbitmq.user     | user name for rabbitmq |
-| sensu.core.rabbitmq.password | password for rabbitmq user |
-| sensu.core.redis.host        | host for redis |
-| sensu.core.redis.port        | port of redis |
-| sensu.core.api.host          | host for sensu api |
-| sensu.core.api.bind          | IP Address to be bound by sensu-api |
-| sensu.core.api.port          | port of sensu-api |
-| sensu.client.name            | sensu-client name (/etc/sensu/conf.d/client.json) |
-| sensu.client.address         | IP Address of host (/etc/sensu/conf.d/client.json) |
-| sensu.client.subscriptions   | names to subscribe the sensu-client |
+|:-----|:------------|
+|node.sensu.user | The user who owns all Sensu files and directories. Default 'sensu' |
+|node.sensu.group | The group that owns all Sensu files and directories. Default 'sensu' |
+|node.sensu.use_embedded_ruby | The flag means whether Sensu ruby handlers and plugins use the embedded ruby in the Sensu package, or not use. (default: true) |
+|node.sensu.log_directory | Sensu log directory. |
+|node.sensu.log_level | Sensu log level (default: info) |
+|node.sensu.service_max_wait | How long service scripts should wait for Sensu to start/stop |
 
-See `attributes/defaults.yml`, about default value for each attributes.
+#### RabbitMQ
 
-**WARNING**: `sensu.core.rabbitmq.port` attribute is not used yet...
+| name | description |
+|:-----|:------------|
+|node.sensu.rabbitmq.host | RabbitMQ host |
+|node.sensu.rabbitmq.port | RabbitMQ port |
+|node.sensu.rabbitmq.vhost | RabbitMQ vhost for Sensu |
+|node.sensu.rabbitmq.user | RabbitMQ user for Sensu |
+|node.sensu.rabbitmq.password | RabbitMQ password for Sensu |
+
+- **WARNING**: This plugin does not support configuration about RabbitMQ ssl. This may be cause of Security Issue.
+- **WARNING**: `sensu.core.rabbitmq.port` attribute is not used yet...
+
+#### Redis
+
+| name | description |
+|:-----|:------------|
+|node.sensu.redis.host | Redis host |
+|node.sensu.redis.port | Redis port |
+
+#### Sensu API
+
+| name | description |
+|:-----|:------------|
+|node.sensu.api.host | Sensu API host, for other services to reach it. |
+|node.sensu.api.bind | Sensu API bind address |
+|node.sensu.api.port | Sensu API port |
+
+
 
 ## Contributing
 
