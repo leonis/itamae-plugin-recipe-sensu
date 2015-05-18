@@ -175,6 +175,19 @@ sensu_check 'redis_process' do
 end
 ```
 
+#### Define a filter
+
+```
+sensu_filter 'environment' do
+  attributes(
+    client: {
+      environment: 'development'
+    }
+  )
+  negate true
+end
+```
+
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/itamae-plugin-recipe-sensu/fork )

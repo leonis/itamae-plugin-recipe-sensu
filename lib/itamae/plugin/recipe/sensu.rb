@@ -1,7 +1,7 @@
 require 'pathname'
 (Pathname.new(__FILE__).join('../../')).tap do |path|
-  %w[sensu_plugin sensu_client sensu_handler sensu_check].each do |resource|
-    require path.join('resource/', resource + '.rb').to_s
+  %w[plugin client handler check filter].each do |resource|
+    require path.join('resource/', 'sensu_' + resource + '.rb').to_s
   end
 end
 
