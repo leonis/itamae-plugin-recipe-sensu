@@ -1,7 +1,9 @@
 require 'pathname'
-require Pathname.new(__FILE__).join('../../resource/sensu_plugin.rb').to_s
-require Pathname.new(__FILE__).join('../../resource/sensu_client.rb').to_s
-require Pathname.new(__FILE__).join('../../resource/sensu_handler.rb').to_s
+(Pathname.new(__FILE__).join('../../')).tap do |path|
+  %w[sensu_plugin sensu_client sensu_handler sensu_check].each do |resource|
+    require path.join('resource/', resource + '.rb').to_s
+  end
+end
 
 module Itamae
   module Plugin

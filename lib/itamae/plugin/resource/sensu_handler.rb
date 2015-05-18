@@ -17,11 +17,11 @@ module Itamae
         attributes.content = handler_json
 
         # FIXME: fetch handler path from node and set new path if path is nil.
-        config_name = attributes.handler_name + '.json'
-        attributes.path ||= Pathname.new(node.sensu.directory).join('conf.d/handlers', config_name)
+        config_file = attributes.handler_name + '.json'
+        attributes.path ||= Pathname.new(node.sensu.directory).join('conf.d/handlers', config_file)
         attributes.mode = '0644'
-        attributes.owner ||= 'sensu'
-        attributes.group ||= 'sensu'
+        attributes.owner ||= node.sensu.user
+        attributes.group ||= node.sensu.group
 
         super
       end

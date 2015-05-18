@@ -4,6 +4,8 @@
 
 **WARNING**: Under development yet !
 
+**NOTE**: This recipe/resource is implemented by referene to [sensu/sensu-chef](https://github.com/sensu/sensu-chef).
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -125,7 +127,53 @@ See `attribuets/defaults.yml` about default values.
 |node.sensu.api.bind | Sensu API bind address |
 |node.sensu.api.port | Sensu API port |
 
+### Resource
 
+#### Define a client.
+
+```
+# your recipe
+sensu_client 'localhost' do
+  address '127.0.0.1'
+  subscription_names ['all']
+  keepalive(
+    thresholds: {
+      warning: 10,
+      critical: 180
+    },
+    handlers: ['default'],
+    refresh: 180
+  )
+  additional(
+    description: 'sample host'
+  )
+end
+```
+
+#### Define a handler
+
+```
+sensu_handler 'pagerduty' do
+  type 'pipe'
+  command 'pagerduty.rb'
+  severities ['ok', 'critical']
+end
+```
+
+#### Define a check
+
+```
+sensu_check 'redis_process' do
+  command 'check-procs.rb -p redis-server -C 1'
+  handlers ['default']
+  subscribers ['redis']
+  interval 30
+  additional(
+    notification: 'Redis is not running',
+    occurrences: 5
+  )
+end
+```
 
 ## Contributing
 
