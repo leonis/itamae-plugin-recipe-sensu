@@ -30,7 +30,7 @@ Or install it yourself as:
 
 Install & configure redis.
 
-```
+```ruby
 # your recipe
 include_recipe 'sensu::redis'
 ```
@@ -41,7 +41,7 @@ NOTE: depends on [itamae-plugin-recipe-redis](https://github.com/leonis/itamae-p
 
 Install RabbitMQ.
 
-```
+```ruby
 # your recipe
 include_recipe 'sensu::rabbitmq'
 ```
@@ -52,7 +52,7 @@ NOTE: depends on [itamae-plugin-recipe-rabbitmq](https://github.com/leonis/itama
 
 Install sensu package.
 
-```
+```ruby
 # your recipe
 include_recipe 'sensu::package'
 ```
@@ -61,7 +61,7 @@ include_recipe 'sensu::package'
 
 Enable sensu-client service.
 
-```
+```ruby
 # your recipe
 include_recipe 'sensu::client_service'
 ```
@@ -70,7 +70,7 @@ include_recipe 'sensu::client_service'
 
 Enable sensu-server service.
 
-```
+```ruby
 # your recipe
 include_recipe 'sensu::server_service'
 ```
@@ -79,7 +79,7 @@ include_recipe 'sensu::server_service'
 
 Enable sensu-api service.
 
-```
+```ruby
 # your recipe
 include_recipe 'sensu::api_service'
 ```
@@ -131,7 +131,7 @@ See `attribuets/defaults.yml` about default values.
 
 #### Define a client.
 
-```
+```ruby
 # your recipe
 sensu_client 'localhost' do
   address '127.0.0.1'
@@ -152,7 +152,7 @@ end
 
 #### Define a handler
 
-```
+```ruby
 sensu_handler 'pagerduty' do
   type 'pipe'
   command 'pagerduty.rb'
@@ -162,7 +162,7 @@ end
 
 #### Define a check
 
-```
+```ruby
 sensu_check 'redis_process' do
   command 'check-procs.rb -p redis-server -C 1'
   handlers ['default']
@@ -177,7 +177,7 @@ end
 
 #### Define a filter
 
-```
+```ruby
 sensu_filter 'environment' do
   attributes(
     client: {
@@ -190,7 +190,7 @@ end
 
 #### Define a mutator
 
-```
+```ruby
 sensu_mutator 'opentsdb' do
   command 'opentsdb.rb'
 end
