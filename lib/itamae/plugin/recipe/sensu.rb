@@ -1,6 +1,6 @@
 require 'pathname'
 (Pathname.new(__FILE__).join('../../')).tap do |path|
-  %w[plugin client handler check filter].each do |resource|
+  %w[plugin client handler check filter mutator].each do |resource|
     require path.join('resource/', 'sensu_' + resource + '.rb').to_s
   end
 end

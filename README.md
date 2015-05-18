@@ -188,6 +188,14 @@ sensu_filter 'environment' do
 end
 ```
 
+#### Define a mutator
+
+```
+sensu_mutator 'opentsdb' do
+  command 'opentsdb.rb'
+end
+```
+
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/itamae-plugin-recipe-sensu/fork )
