@@ -150,6 +150,8 @@ sensu_client 'localhost' do
 end
 ```
 
+With default attributes, this code create config file to `/etc/sensu/conf.d/client.json`.
+
 #### Define a handler
 
 ```ruby
@@ -159,6 +161,8 @@ sensu_handler 'pagerduty' do
   severities ['ok', 'critical']
 end
 ```
+
+With default attributes, this code create config file to `/etc/sensu/conf.d/handlers/pagerduty.json`.
 
 #### Define a check
 
@@ -175,6 +179,8 @@ sensu_check 'redis_process' do
 end
 ```
 
+With default attributes, this code create config file to `/etc/sensu/conf.d/checks/redis_process.json`.
+
 #### Define a filter
 
 ```ruby
@@ -188,6 +194,8 @@ sensu_filter 'environment' do
 end
 ```
 
+With default attributes, this code create config file to `/etc/sensu/conf.d/filters/environment.json`.
+
 #### Define a mutator
 
 ```ruby
@@ -195,6 +203,18 @@ sensu_mutator 'opentsdb' do
   command 'opentsdb.rb'
 end
 ```
+
+With default attributes, this code create config file to `/etc/sensu/conf.d/mutators/opentsdb.json`.
+
+#### Install rubygem with embedded rubygem by sensu package.
+
+```ruby
+sensu_gem 'sensu-plugins-apache' do
+  action :install
+end
+```
+
+Install 'sensu-plugins-apache' gem with embedded rubygem by sensu package (`/opt/sensu/embedded/bin/gem`).
 
 ## Contributing
 
