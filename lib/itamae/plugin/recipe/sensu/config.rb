@@ -12,3 +12,12 @@ template '/etc/sensu/config.json' do
     api:      node.sensu.api
   )
 end
+
+%w[handlers checks filters mutators].each do |name|
+  directory '/etc/sensu/conf.d/' + name do
+    action :create
+    owner node.sensu.user
+    group node.sensu.group
+    mode '0755'
+  end
+end
