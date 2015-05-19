@@ -5,8 +5,10 @@ module Itamae
     class SensuGem < GemPackage
       define_attribute :gem_binary, type: String, default: nil
       define_attribute :prerelease, default: false
+      define_attribute :plugin, default: false
 
       EMBEDDED_GEM = '/opt/sensu/embedded/bin/gem'.freeze
+      PLUGIN_PREFIX = 'sensu-plugins-'.freeze
 
       def pre_action
         if attributes.gem_binary
@@ -17,9 +19,15 @@ module Itamae
         end
         attributes.gem_binary = EMBEDDED_GEM
 
+        package_name = attributes.package_name
+        if attributes.plugin && !package_name.start_with?(PLUGIN_PREFIX)
+          attributes.package_name = PLUGIN_PREFIX + package_name
+        end
+
         super
       end
 
+      # NOTE: This resource override this method to enable '--prerelease' option.
       def installed_gems
         gems = []
 
@@ -38,6 +46,7 @@ module Itamae
         []
       end
 
+      # NOTE: This resource override this method to enable '--prerelease' option.
       def install!
         cmd = [attributes.gem_binary, 'install']
         cmd << '-v' << attributes.version if attributes.version
