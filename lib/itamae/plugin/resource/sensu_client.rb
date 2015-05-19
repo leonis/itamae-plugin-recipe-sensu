@@ -2,13 +2,6 @@ require 'itamae'
 require_relative '../recipe/sensu.rb'
 require 'json'
 
-#
-# sensu_client node.name do
-#   address node.address
-#   subscriptions node.roles + ['all']
-#   additional(cluster: node.cluster)
-# end
-
 module Itamae
   module Resource
     class SensuClient < File
@@ -21,7 +14,7 @@ module Itamae
       define_attribute :additional, type: Hash, default: {}
 
       def pre_action
-        attribuets.path ||= Pathname.new(node.sensu.directory).join('conf.d/client.json').to_s
+        attributes.path ||= Pathname.new(node.sensu.directory).join('conf.d/client.json').to_s
         attributes.content = client_json_content
         attributes.mode =  '0644'
         attributes.owner = node.sensu.user
