@@ -13,7 +13,7 @@ module Itamae
   module Resource
     class SensuClient < File
       define_attribute :action, default: :create
-      define_attribute :path, type: String, default: '/etc/sensu/conf.d/client.json', default_name: false
+      define_attribute :path, type: String, default_name: false
       define_attribute :hostname, type: String, default_name: true
       define_attribute :address, type: String
       define_attribute :subscription_names, type: Array, defualt: []
@@ -21,6 +21,7 @@ module Itamae
       define_attribute :additional, type: Hash, default: {}
 
       def pre_action
+        attribuets.path ||= Pathname.new(node.sensu.directory).join('conf.d/client.json').to_s
         attributes.content = client_json_content
         attributes.mode =  '0644'
         attributes.owner = node.sensu.user
