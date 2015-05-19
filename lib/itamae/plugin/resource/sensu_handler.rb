@@ -16,7 +16,6 @@ module Itamae
       def pre_action
         attributes.content = handler_json
 
-        # FIXME: fetch handler path from node and set new path if path is nil.
         config_file = attributes.handler_name + '.json'
         attributes.path ||= Pathname.new(node.sensu.directory).join('conf.d/handlers', config_file)
         attributes.mode = '0644'
